@@ -125,7 +125,7 @@ fizz_buzz()
 
 # End
 
-# password strenght checker
+#  password strenght checker
 
 
 def check_password(password):
@@ -229,7 +229,7 @@ for item in inventory:
 
 # end
 
-# Contact Management System
+# # Contact Management System
 
 contacts = {
     "Alice": {"phone": "123-456-7890", "email": "alice@example.com"},
@@ -264,3 +264,67 @@ print(result)
 
 for name, info in contacts.items():
     print(f"Name: {name}, Phone: {info['phone']}, Email: {info['email']}")
+
+# end
+
+# To-Do List Manager
+
+def add_task(to_do_list):
+    task = input("Enter the task you want to add: ").strip()
+    if task:
+        to_do_list.append({"task": task, "completed": False})
+    else:
+        raise ValueError("Task cannot be empty.")
+
+
+def complete_task(to_do_list):
+    try:
+        task_number = int(
+            input("Enter the task number to mark as completed: "))
+        if 1 <= task_number <= len(to_do_list):
+            to_do_list[task_number - 1]["completed"] = True
+        else:
+            raise IndexError("Invalid task number.")
+    except ValueError:
+        print("Please enter a valid number.")
+    except IndexError as ie:
+        print(f"Error: {ie}")
+
+
+def view_tasks(to_do_list):
+    if not to_do_list:
+        print("Your to-do list is empty.")
+    else:
+        for i, task in enumerate(to_do_list, 1):
+            status = "Completed" if task["completed"] else "Not Completed"
+            print(f"{i}. {task['task']} - {status}")
+
+
+to_do_list = []
+
+while True:
+    print("\nTo-Do List Manager")
+    print("1. Add Task")
+    print("2. Complete Task")
+    print("3. View Tasks")
+    print("4. Exit")
+
+    try:
+        choice = int(input("Choose an option (1-4): "))
+
+        if choice == 1:
+            add_task(to_do_list)
+        elif choice == 2:
+            complete_task(to_do_list)
+        elif choice == 3:
+            view_tasks(to_do_list)
+        elif choice == 4:
+            print("Goodbye")
+            break
+        else:
+            raise ValueError("Please choose a valid option (1-4).")
+
+    except ValueError as ve:
+        print(f"Input Error: {ve}")
+
+# End
