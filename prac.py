@@ -432,3 +432,18 @@
 
 # with open('response.json', 'w') as file:
 #     json.dump(data, file, indent=4)
+
+# from bs4 import BeautifulSoup
+# import requests
+
+# response = requests.get("https://kryptlabs.netlify.app")
+# html_content = response.text
+
+# soup = BeautifulSoup(html_content, 'html.parser')
+
+# title = soup.title.text
+# print('Title:', title)
+
+# links = soup.find_all('a')
+# for link in links:
+#     print
