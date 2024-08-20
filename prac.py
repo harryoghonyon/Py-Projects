@@ -447,3 +447,56 @@
 # links = soup.find_all('a')
 # for link in links:
 #     print
+
+
+# from bs4 import BeautifulSoup
+# import requests
+# import json
+
+# url = 'https://www.jumia.com.ng/'
+
+# response = requests.get(url)
+# html_content = response.text
+
+# soup = BeautifulSoup(html_content, 'html.parser')
+
+# title = soup.title.text
+# print('Title:', title)
+
+# links = soup.find_all('a')
+# for link in links:
+#     print(link.get('href'))
+
+# data = {
+#     "title": title,
+#     "links": [link.get('href') for link in links]
+# }
+
+# with open('file.json', 'w') as file:
+#     json.dump(data, file, indent=4)
+
+
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# from selenium.webdriver.common.keys import Keys
+# import time
+
+# driver = webdriver.Chrome()
+
+# driver.get('https://jiji.ng')
+
+# time.sleep(5)
+
+# search_box = driver.find_element(By.CLASS_NAME, 'multiselect__input')
+
+# search_box.send_keys('laptops')
+# search_box.send_keys(Keys.RETURN)
+
+# time.sleep(5)
+
+# item_titles = driver.find_elements(By.CLASS_NAME, 'item-title')
+
+# for item in item_titles:
+#     print(item.text)
+
+# driver.quit()
