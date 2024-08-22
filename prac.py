@@ -476,27 +476,52 @@
 #     json.dump(data, file, indent=4)
 
 
-# from selenium import webdriver
-# from selenium.webdriver.common.by import By
-# from selenium.webdriver.common.keys import Keys
-# import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import csv
+import time
 
-# driver = webdriver.Chrome()
 
-# driver.get('https://jiji.ng')
+def search_gaming_monitor():
+    driver = webdriver.Chrome()
 
-# time.sleep(5)
+    try:
+        driver.get("https://jiji.ng")
 
-# search_box = driver.find_element(By.CLASS_NAME, 'multiselect__input')
+        #  Search for Gaming Monitor
+        search_box = driver.find_element(By.CLASS_NAME, "multiselect__input")
+        search_box.send_keys("Gaming Monitor")
+        search_box.send_keys(Keys.RETURN)
 
-# search_box.send_keys('laptops')
-# search_box.send_keys(Keys.RETURN)
+        time.sleep(10)
 
-# time.sleep(5)
+        # Extract gaming monitor names and prices
+        gaming_monitor_names = driver.find_elements(
+            By.CLASS_NAME, "qa-advert-title")
 
-# item_titles = driver.find_elements(By.CLASS_NAME, 'item-title')
+        gaming_monitor_prices = driver.find_elements(
+            By.CLASS_NAME, "qa-advert-price")
 
-# for item in item_titles:
-#     print(item.text)
+        # Create a CSV File and write the headers
+        with open('gaming_monitor_sellers.csv', 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Gaming Monitor Name", "Gaming Monitor Price"])
 
-# driver.quit()
+            # Iterate over the names and prices and write them to the CSV file
+            for name, price in zip(gaming_monitor_names, gaming_monitor_prices):
+                writer.writerow([name.text, price.text])
+
+        print("Data has been added to gaming_monitor_sellers.csv")
+
+        # Return the page source for Pytest to analyze
+        return driver.page_source
+
+    finally:
+        driver.quit()
+
+
+if __name__ == "__main__":
+    search_gaming_monitor()
