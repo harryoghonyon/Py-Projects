@@ -516,8 +516,8 @@ def search_gaming_monitor():
 
         print("Data has been added to gaming_monitor_sellers.csv")
 
-        # Return the page source for Pytest to analyze
-        return driver.page_source
+        # # Return the page source for Pytest to analyze
+        # return driver.page_source
 
     finally:
         driver.quit()
