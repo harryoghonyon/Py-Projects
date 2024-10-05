@@ -117,6 +117,7 @@ plt.show()
 def distance(t):
     return 54.07 * t
 
+
 t_values = np.arange(0, 14, 0.1)
 
 d_values = distance(t_values)
@@ -126,6 +127,26 @@ plt.plot(t_values, d_values, label="Distance Traveled")
 plt.xlabel('Time in Hours')
 plt.ylabel('Distance in Miles')
 plt.title('Distance Traveled Over Time')
+plt.grid(True)
+plt.legend()
+
+plt.show()
+
+
+def trip_distance(gallons):
+    return 30 * gallons
+
+
+fuel_values = np.arange(0, 12, 1)
+
+trip_distances = trip_distance(fuel_values)
+
+plt.plot(fuel_values, trip_distances, label="Distance vs Fuel")
+
+plt.xlabel('Fuel in Gallons')
+plt.ylabel('Distance in Miles')
+plt.title('Fuel Efficiency of a Car')
+
 plt.grid(True)
 plt.legend()
 
