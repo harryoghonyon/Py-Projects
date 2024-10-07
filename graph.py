@@ -91,6 +91,8 @@
 # plt.show()
 
 
+from datetime import datetime
+from meteostat import Point, Daily
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -148,6 +150,59 @@ plt.ylabel('Distance in Miles')
 plt.title('Fuel Efficiency of a Car')
 
 plt.grid(True)
+plt.legend()
+
+plt.show()
+
+
+def fahrenheit_to_celsius(t):
+    return (t - 32) * 5/9
+
+
+celsius_values = np.arange(32, 213, 1)
+
+celsius_convert = fahrenheit_to_celsius(celsius_values)
+
+plt.plot(celsius_values, celsius_convert, label="Fahrenheit to Celsius")
+
+plt.xlabel('Fahrenheit values')
+plt.ylabel('Celsius values')
+plt.title('Fahrenheit to Celsius Conversion')
+plt.grid(True)
+plt.legend()
+plt.show()
+
+x = np.linspace(-10, 10, 400)
+
+y1 = 2 * x + 3
+y2 = -x + 1
+
+plt.figure(figsize=(8, 6))
+
+plt.plot(x, y1, label="y = 2x + 3", color="blue")
+plt.plot(x, y2, label="y = -x + 1", color="red")
+plt.title("Graph of the system of Equations")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+location = Point(48.8566, 2.3522, 35)
+
+start = datetime(2024, 2, 1)
+end = datetime(2024, 2, 29)
+
+data = Daily(location, start, end)
+data = data.fetch()
+
+plt.plot(data.index, data['tavg'], label='Avg Temp (°C)', color='blue')
+plt.plot(data.index, data['tmax'], label='Max Temp (°C)', color='red')
+plt.plot(data.index, data['prcp'], label='Precipitation (mm)', color='green')
+
+plt.xlabel('Date')
+plt.ylabel('Values')
 plt.legend()
 
 plt.show()
